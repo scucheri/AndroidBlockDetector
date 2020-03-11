@@ -2,16 +2,31 @@ package plugin.android.ss.com.performancedetectorblock;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import master.com.performancedetect.R;
 
 public class MainActivity extends AppCompatActivity {
-    private Handler mainHandler = new Handler();
+    private int TEST_MESSAGE = 0;
+    private Handler mainHandler = new Handler(){
+        @Override
+        public void handleMessage(@NonNull Message msg) {
+            super.handleMessage(msg);
+            if(msg.what == TEST_MESSAGE){
+                mainHandler.sendEmptyMessageDelayed(TEST_MESSAGE, 100);
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +38,8 @@ public class MainActivity extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                mainHandler.sendEmptyMessageDelayed(TEST_MESSAGE, 100);
+
 
 //                try {
 //                    Thread.sleep(500);
