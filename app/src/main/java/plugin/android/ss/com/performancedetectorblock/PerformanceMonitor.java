@@ -5,7 +5,8 @@ import android.os.HandlerThread;
 import android.os.Looper;
 import android.util.Log;
 
-public class PerformanceMonitor {
+public class
+PerformanceMonitor {
     private static final String TAG = "PerformanceMonitor";
     private static final long TIME_DELAY = 1500L;
     private static PerformanceMonitor sPerformanceMonitor;
@@ -29,7 +30,7 @@ public class PerformanceMonitor {
                         sb.append(element + "\n");
                     }
                 }
-                Log.e(TAG, "-------------------------------------------------");
+                Log.e(TAG, "-------------------------------------------------" + Thread.currentThread().getName());
                 Log.e(TAG, "Method more than:" + TIME_DELAY + " s ,stack:");
                 Log.e(TAG, sb.toString());
                 Log.e(TAG, "-------------------------------------------------");

@@ -1,10 +1,12 @@
 package plugin.android.ss.com.performancedetectorblock;
 
 import android.os.Looper;
+import android.util.Log;
 import android.util.Printer;
 
 
 public class PerformanceManager {
+    private static final String TAG = "PerformanceManager Main Looper Message : ";
     private static final String FLAG_METHOD_START = ">>>>> Dispatching to";
     private static final String FLAG_METHOD_END = "<<<<< Finished to";
 
@@ -16,6 +18,7 @@ public class PerformanceManager {
         Looper.getMainLooper().setMessageLogging(new Printer() {
             @Override
             public void println(String x) {
+                Log.i(TAG, x);
                 try {
                     if (x.contains(FLAG_METHOD_START)) {
                         PerformanceMonitor.getInstance().onMethodStart();
